@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximale Sichtbarkeit für Montblanc E-Mails & Salesforce-Dokumente | Best Practices</title>
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #8b0000;
+            --accent: #d4af37;
+            --light: #f8f8f8;
+            --dark: #333;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: var(--dark);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), #2a2a2a);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            border-bottom: 5px solid var(--accent);
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin: 50px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin: 30px 0 15px;
+        }
+
+        h4 {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin: 25px 0 10px;
+        }
+
+        p {
+            margin: 0 0 20px;
+        }
+
+        ul, ol {
+            margin: 0 0 25px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 25px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            background: rgba(0,0,0,0.05);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
+        .highlight-box {
+            background-color: #fff9e6;
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .checklist {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            margin: 30px 0;
+        }
+
+        .checklist li {
+            list-style-type: none;
+            padding-left: 35px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-size: 1.2em;
+        }
+
+        .note {
+            background-color: #e6f3ff;
+            border-left: 4px solid #4d90fe;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .warning {
+            background-color: #fff3f3;
+            border-left: 4px solid #ff6b6b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .success {
+            background-color: #edf7ed;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: var(--secondary);
+            margin-top: 0;
+        }
+
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 20px 0;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Maximale Sichtbarkeit für Montblanc E-Mails & Salesforce-Dokumente</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9;">Professionelle Leitlinien für herausragende digitale Präsenz</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="zielsetzung">
+            <h2>🎯 Zielsetzung</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>E-Mail Marketing</h3>
+                    <ul>
+                        <li>Öffnungsrate >30%</li>
+                        <li>Spamfilter umgehen</li>
+                        <li>Starke Brand-Präsenz</li>
+                        <li>Konsistente Customer Journey</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Dokumentenoptimierung</h3>
+                    <ul>
+                        <li>Top 3 Google-Rankings für Premium-Keywords</li>
+                        <li>Verbesserte Suchmaschinensichtbarkeit</li>
+                        <li>Strukturierte Daten für Rich Snippets</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Salesforce Integration</h3>
+                    <ul>
+                        <li>Lückenloses Interaction-Tracking</li>
+                        <li>Smarte Personalisierung</li>
+                        <li>Automatisierte Workflows</li>
+                        <li>Datengetriebene Entscheidungen</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>Key Performance Indicators (KPIs)</h4>
+                <ul>
+                    <li><strong>E-Mail:</strong> Open Rate >30%, Click Rate >5%, Spam Complaint Rate <0.1%</li>
+                    <li><strong>Dokumente:</strong> Top 3 Rankings für 80% der Zielkeywords</li>
+                    <li><strong>Salesforce:</strong> 95% Tracking-Abdeckung aller Kundeninteraktionen</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="salesforce-dokumente">
+            <h2>1. Salesforce-Dokumente (PDF/HTML)</h2>
+            
+            <h3>Meta-Tags Vorlage</h3>
+            <pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Montblanc [Produktname] | [Kollektion/Jahr] | Offizielle Website&lt;/title&gt;
+  &lt;meta name="description" content="[1-2 Sätze mit Hauptkeywords wie 'luxury pens', 'limited edition']. Exklusiv bei Montblanc - seit 1906 Synonym für höchste Handwerkskunst."&gt;
+  &lt;meta name="keywords" content="Montblanc,[Produktkategorie],[Material],[Kollektion],luxury,premium,handmade"&gt;
+  &lt;meta name="author" content="Montblanc GmbH"&gt;
+  &lt;meta name="robots" content="index, follow"&gt;
+  &lt;meta property="og:title" content="Montblanc [Produktname] | [Kollektion/Jahr]"&gt;
+  &lt;meta property="og:description" content="[Produktbeschreibung]"&gt;
+  &lt;meta property="og:image" content="[Bild-URL]"&gt;
+  &lt;meta property="og:type" content="product"&gt;
+  &lt;meta property="og:url" content="[Dokumenten-URL]"&gt;
+&lt;/head&gt;</code></pre>
+            
+            <div class="note">
+                <p><strong>Profi-Tipp:</strong> Für limitierte Kollektionen zusätzlich "limited edition" und das Jahr im Title-Tag verwenden. Dies erhöht die CTR in den Suchergebnissen um durchschnittlich 23%.</p>
+            </div>
+            
+            <h3>Strukturierte Daten (Schema.org JSON-LD)</h3>
+            <pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "[Vollständiger Produktname]",
+  "image": "[Bild-URL in hoher Auflösung]",
+  "description": "[Technische Details + Luxus-Aspekte]. Handgefertigt von unseren Meistern in [Produktionsort].",
+  "brand": {
+    "@type": "Brand",
+    "name": "Montblanc",
+    "logo": "https://www.montblanc.com/logo.jpg"
+  },
+  "sku": "[MB-PRODUCTCODE]",
+  "gtin": "[GTIN/EAN falls vorhanden]",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "EUR",
+    "price": "[Preis]",
+    "priceValidUntil": "[YYYY-MM-DD]",
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition",
+    "url": "[Produkt-URL]",
+    "seller": {
+      "@type": "Organization",
+      "name": "Montblanc"
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "[Durchschnittliche Bewertung]",
+    "reviewCount": "[Anzahl Bewertungen]"
+  }
+}
+&lt;/script&gt;</code></pre>
+            
+            <div class="checklist">
+                <h4>Checkliste für Dokumente</h4>
+                <ul>
+                    <li>Meta-Title mit Hauptkeyword (60-70 Zeichen)</li>
+                    <li>Meta-Description mit USP (150-160 Zeichen)</li>
+                    <li>Schema.org Markup validiert (<a href="https://validator.schema.org" target="_blank">https://validator.schema.org</a>)</li>
+                    <li>OpenGraph Tags für Social Media</li>
+                    <li>PDFs durchsuchbar (OCR bei gescannten Dokumenten)</li>
+                    <li>Dateiname SEO-optimiert (z.B. montblanc-meisterstück-149-fountain-pen.pdf)</li>
+                    <li>Bild-Alt-Texte mit Keywords</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="email-optimierung">
+            <h2>2. E-Mail Optimierung</h2>
+            
+            <div class="warning">
+                <p><strong>Achtung:</strong> Ohne korrekte Authentifizierung landen bis zu 40% Ihrer E-Mails im Spam. SPF, DKIM und DMARC sind essentiell.</p>
+            </div>
+            
+            <h3>Technische Pflicht-Checks</h3>
+            <ul>
+                <li><strong>Authentifizierung:</strong> SPF, DKIM, DMARC für @montblanc.com</li>
+                <li><strong>Betreffzeile:</strong> 40-50 Zeichen (inkl. Emoji wenn passend)</li>
+                <li><strong>Preheader:</strong> 85-100 Zeichen als Call-to-Action</li>
+                <li><strong>Responsive Design:</strong> Mobile-first Ansatz</li>
+                <li><strong>Alt-Texte:</strong> Für alle Bilder (auch dekorative)</li>
+                <li><strong>Ladezeit:</strong> < 100KB Gesamtgröße empfohlen</li>
+                <li><strong>Abmeldelink:</strong> Sichtbar und einfach zu finden</li>
+            </ul>
+            
+            <h3>HTML-E-Mail Kopf (Best Practice)</h3>
+            <pre><code>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+  &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;[Wie Betreffzeile] | Montblanc&lt;/title&gt;
+  &lt;style type="text/css"&gt;
+    /* Client-specific resets */
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+    
+    /* Mobile styles */
+    @media screen and (max-width: 600px) {
+      .email-container {
+        width: 100% !important;
+      }
+      .fluid {
+        max-width: 100% !important;
+        height: auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      .stack-column,
+      .stack-column-center {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        direction: ltr !important;
+      }
+      /* And so on... */
+    }
+    
+    /* Dark mode styles */
+    @media (prefers-color-scheme: dark) {
+      .dark-bg { background-color: #121212 !important; }
+      .dark-text { color: #ffffff !important; }
+      .dark-logo { filter: brightness(0) invert(1); }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Betreffzeilen Beispiele</h3>
+                    <ul>
+                        <li>✨ Exklusiv: Neue Montblanc Kollektion 2025</li>
+                        <li>Ihr persönlicher Einladung: Private Viewing</li>
+                        <li>Meisterstück No. 149 - Jetzt konfigurieren</li>
+                        <li>Limited Edition: Nur 100 Stück weltweit</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Preheader Beispiele</h3>
+                    <ul>
+                        <li>Entdecken Sie die neue Kollektion unserer Meister - nur für Sie</li>
+                        <li>Exklusive Einladung zu Ihrem persönlichen Beratungstermin</li>
+                        <li>Konfigurieren Sie Ihr persönliches Meisterstück - jetzt online</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="salesforce-umsetzung">
+            <h2>3. Salesforce-spezifische Umsetzung</h2>
+            
+            <h3>Best Practices für Integration</h3>
+            <ol>
+                <li>
+                    <strong>UTM-Parameter Strategie</strong>
+                    <p>Beispiel für strukturierte UTM-Parameter:</p>
+                    <pre>?utm_source=newsletter&utm_medium=email&utm_campaign=herbst2025&utm_content=cta_button&utm_term=meisterstueck</pre>
+                    <p>In Salesforce als benutzerdefinierte Felder speichern und für Reporting nutzen.</p>
+                </li>
+                <li>
+                    <strong>Dokumentenmanagement</strong>
+                    <ul>
+                        <li>PDFs: <code>montblanc-[produktname]-[kollektion]-[datum].pdf</code></li>
+                        <li>HTML-Versionen mit identischen Meta-Tags wie PDFs</li>
+                        <li>Versionierung aktivieren für Änderungshistorie</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>A/B-Testing Framework</strong>
+                    <ul>
+                        <li>Betreffzeilen (max. 2 Varianten)</li>
+                        <li>Sendetime (Dienstag vs. Mittwoch vs. Donnerstag)</li>
+                        <li>Content-Positionierung (CTA oben vs. unten)</li>
+                        <li>Bild vs. Text-basierter CTA</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="highlight-box">
+                <h4>Salesforce Einstein Empfehlungen</h4>
+                <p>Nutzen Sie Salesforce Einstein für:</p>
+                <ul>
+                    <li>Predictive Send Time Optimization</li>
+                    <li>Content Recommendations basierend auf Kundenprofil</li>
+                    <li>Automatische Segmentierung nach Engagement-Level</li>
+                    <li>Vorhersage von Konversionswahrscheinlichkeiten</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="profi-tipps">
+            <h2>4. Erweiterte Profi-Tipps für Luxusmarken</h2>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>1. Inbox Placement Tests</h3>
+                    <p>Testen Sie mit Tools wie GlockApps oder InboxReady, ob Ihre E-Mails tatsächlich im Posteingang landen.</p>
+                    <p><strong>Ziel:</strong> Spam-Score < 0.1%</p>
+                </div>
+                <div class="card">
+                    <h3>2. Engagement-Booster</h3>
+                    <p>Segmentieren Sie nach Interaktionszeitpunkt und senden Sie gezielte Reaktivierungskampagnen.</p>
+                    <p><strong>SQL-Beispiel:</strong><br>
+                    <code>SELECT Id FROM Contact WHERE LastOpenedDate < LAST_N_DAYS:90</code></p>
+                </div>
+                <div class="card">
+                    <h3>3. Dynamischer VIP-Content</h3>
+                    <p>Nutzen Sie Conditional Content Blocks basierend auf Kundenwert oder Kaufhistorie.</p>
+                    <pre><code>&lt;!--[if expr="($customerTier == 'platinum')"]--&gt;
+&lt;div class="vip-offer"&gt;...&lt;/div&gt;
+&lt;!--[endif]--&gt;</code></pre>
+                </div>
+                <div class="card">
+                    <h3>4. AMP for Email</h3>
+                    <p>Interaktive Elemente direkt in der E-Mail (nach Google Approval).</p>
+                    <pre><code>&lt;amp-carousel&gt;...&lt;/amp-carousel&gt;</code></pre>
+                </div>
+                <div class="card">
+                    <h3>5. Dark Mode Optimierung</h3>
+                    <p>Spezielle CSS-Regeln für dunkle Designs:</p>
+                    <pre><code>@media (prefers-color-scheme: dark) {
+  .dark-bg { background: #111 !important; }
+  .logo { filter: brightness(1.2); }
+}</code></pre>
+                </div>
+                <div class="card">
+                    <h3>6. Zero-Party Data</h3>
+                    <p>Sammeln Sie direkte Kundenpräferenzen in der E-Mail:</p>
+                    <pre><code>&lt;form method="post" action-xhr="https://montblanc.com/prefs"&gt;
+  &lt;label&gt;Ihre Interessen:&lt;/label&gt;
+  &lt;select name="interest"&gt;...&lt;/select&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+            </div>
+            
+            <div class="note">
+                <h4>Bonus: Advanced Schema für E-Mails</h4>
+                <pre><code>{
+  "@context": "https://schema.org",
+  "@type": "EmailMessage",
+  "description": "Exklusive Einladung zur Montblanc Herbstkollektion",
+  "potentialAction": {
+    "@type": "ViewAction",
+    "url": "https://montblanc.com/herbst2025",
+    "name": "Kollektion entdecken"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Montblanc",
+    "url": "https://www.montblanc.com"
+  }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="implementierung">
+            <h2>5. Implementierungsfahrplan</h2>
+            
+            <h3>Phase 1: Grundlagen (Woche 1-2)</h3>
+            <ul>
+                <li>Technische Audit (SPF/DKIM/DMARC)</li>
+                <li>Inbox Placement Tests durchführen</li>
+                <li>Dark Mode Optimierung umsetzen</li>
+                <li>Template-Bibliothek erstellen</li>
+            </ul>
+            
+            <h3>Phase 2: Erweiterte Features (Woche 3-4)</h3>
+            <ul>
+                <li>AMP-Elemente entwickeln und einreichen</li>
+                <li>Dynamische Content-Blocks implementieren</li>
+                <li>Strukturierte Daten für bestehende Dokumente</li>
+                <li>Salesforce Einstein aktivieren</li>
+            </ul>
+            
+            <h3>Phase 3: Optimierung (Ab Woche 5)</h3>
+            <ul>
+                <li>Predictive Send-Times aktivieren</li>
+                <li>AI-gestützte A/B-Tests starten</li>
+                <li>Zero-Party Data Collection integrieren</li>
+                <li>Performance-Monitoring einrichten</li>
+            </ul>
+        </section>
+
+        <section id="kpis">
+            <h2>6. Messbare KPIs & Erfolgsmetriken</h2>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>E-Mail Performance</h3>
+                    <ul>
+                        <li><strong>Inbox Rate:</strong> ≥ 98%</li>
+                        <li><strong>Öffnungsrate:</strong> +15–25%</li>
+                        <li><strong>Klickrate:</strong> > 5%</li>
+                        <li><strong>Spam-Beschwerden:</strong> < 0.1%</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Dokumenten-Sichtbarkeit</h3>
+                    <ul>
+                        <li><strong>Top 3 Rankings:</strong> 80% der Zielkeywords</li>
+                        <li><strong>Organic Traffic:</strong> +30%</li>
+                        <li><strong>CTR in SERPs:</strong> > 5%</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Salesforce Tracking</h3>
+                    <ul>
+                        <li><strong>Interaction Coverage:</strong> 95%</li>
+                        <li><strong>Data Quality Score:</strong> > 90</li>
+                        <li><strong>Segmentierungsgenauigkeit:</strong> 85%</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="success">
+                <h4>Erwartete Ergebnisse</h4>
+                <p>Basierend auf vergleichbaren Implementierungen bei Luxusmarken können Sie erwarten:</p>
+                <ul>
+                    <li>+22% Unique Opens (Richemont Case Study 2024)</li>
+                    <li>+35% Klickrate bei VIP-Segmenten</li>
+                    <li>+40% mehr Suchanfragen nach Produktnamen</li>
+                    <li>15% höhere Konversionsrate bei personalisierten Inhalten</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="tools">
+            <h2>7. Empfohlene Tools & Ressourcen</h2>
+            
+            <h3>Deliverability & Testing</h3>
+            <ul>
+                <li><strong>GlockApps:</strong> Inbox Placement Tests</li>
+                <li><strong>Litmus:</strong> E-Mail Rendering Tests</li>
+                <li><strong>Email on Acid:</strong> Pre-Send Checks</li>
+                <li><strong>Mail-Tester:</strong> Spam-Score Analyse</li>
+            </ul>
+            
+            <h3>SEO & Dokumentenoptimierung</h3>
+            <ul>
+                <li><strong>Google Search Console:</strong> Performance Monitoring</li>
+                <li><strong>Schema.org Validator:</strong> Strukturierte Daten</li>
+                <li><strong>Ahrefs/SEMrush:</strong> Keyword Tracking</li>
+                <li><strong>Adobe Acrobat Pro:</strong> PDF SEO</li>
+            </ul>
+            
+            <h3>Salesforce Integration</h3>
+            <ul>
+                <li><strong>Marketing Cloud:</strong> Omnichannel Campaigns</li>
+                <li><strong>Pardot:</strong> B2B Marketing Automation</li>
+                <li><strong>Tableau CRM:</strong> Advanced Analytics</li>
+                <li><strong>Einstein AI:</strong> Predictive Analytics</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <!-- Montblanc Logo -->
+            <img src="https://freesvglogo.com/wp-content/uploads/2022/11/montblanc-logo.svg" alt="Montblanc Logo" class="logo">
+            
+            <p>Dokumentation erstellt für Montblanc | © 2025 Alle Rechte vorbehalten</p>
+            <p>
+                <a href="https://www.profiling-company.de/impressum/" target="_blank">Impressum</a> | 
+                <a href="https://www.profiling-company.de/datenschutz/" target="_blank">Datenschutz</a> | 
+                <a href="https://www.profiling-company.de/kontakt/" target="_blank">Kontakt</a>
+            </p>
+        </div>
+    </footer>
+    
+    
+    
+    
+    
+</body>
+</html>
