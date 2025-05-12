@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Montblanc | Gmail Promotions‑Annotation Guide 2025</title>
+<meta name="description" content="Aktuelle Best‑Practices, Fehlersuche & KI‑Insights für Gmail‑Annotations und maximale Zustellbarkeit von Montblanc‑Mailings.">
+<style>
+:root {
+  --brand:#000;        /* Schwarz */
+  --accent:#d4af37;    /* Gold */
+  --primary:#1a1a1a;
+  --secondary:#8b0000; /* Dunkelrot */
+  --bg:#f6f6f6;
+  --text:#333;
+  --info:#e6f3ff;
+  --warn:#fff3f3;
+  --success:#edf7ed;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:#121212;
+    --text:#e0e0e0;
+    --info:#174d8c;
+    --warn:#5c2b2b;
+    --success:#1d4020;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+      line-height:1.7;background:var(--bg);color:var(--text);}
+header{background:linear-gradient(135deg,var(--brand),#222);color:#fff;padding:4rem 1rem;border-bottom:4px solid var(--accent);text-align:center}
+header h1{font-size:2.6rem;letter-spacing:-.5px;margin-bottom:.3rem}
+header p{font-size:1.2rem;opacity:.9}
+nav{background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.05);position:sticky;top:0;z-index:100}
+nav ul{display:flex;flex-wrap:wrap;justify-content:center;list-style:none;padding:.75rem 1rem}
+nav li{margin:.3rem 1rem}
+nav a{text-decoration:none;font-weight:600;color:var(--secondary);transition:.3s}
+nav a:hover{color:var(--accent)}
+main{max-width:1200px;margin:0 auto;padding:2rem 1rem}
+h2{font-size:2rem;color:var(--secondary);margin-top:3rem;border-bottom:2px solid var(--accent);padding-bottom:.4rem}
+h3{font-size:1.4rem;color:var(--primary);margin-top:2rem;}
+p,ul,ol,table{margin-top:1rem}
+ul{padding-left:1.2rem}
+li{margin-bottom:.5rem}
+.callout{padding:1rem 1.2rem;border-left:4px solid var(--accent);border-radius:0 6px 6px 0;background:#fff;margin:1.5rem 0}
+.info{background:var(--info);border-color:#4d90fe}
+.warn{background:var(--warn);border-color:#ff6b6b}
+.success{background:var(--success);border-color:#4caf50}
+pre{background:#1e1e1e;color:#ccc;padding:1rem;border-radius:6px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin:1rem 0}
+th,td{padding:.7rem;border:1px solid #ccc;text-align:left}
+th{background:#fafafa}
+/* Dark‑mode table override */
+@media (prefers-color-scheme: dark) {
+ th{background:#222}
+ td,th{border-color:#555}
+ pre{background:#000}
+ nav{background:#1e1e1e}
+}
+footer{background:var(--brand);color:#fff;text-align:center;padding:3rem 1rem;margin-top:4rem}
+footer a{color:var(--accent);text-decoration:none}
+.toggle-wrapper{position:fixed;bottom:1rem;right:1rem}
+.toggle-wrapper label{cursor:pointer;display:inline-flex;align-items:center;font-size:.9rem}
+.toggle-wrapper input{margin-right:.4rem}
+</style>
+<script>
+/* Simple dark‑mode toggle overriding prefers‑color‑scheme */
+function toggleDarkMode(cb) {
+  if(cb.checked) {
+    document.documentElement.style.setProperty('--bg','#121212');
+    document.documentElement.style.setProperty('--text','#e0e0e0');
+  } else {
+    document.documentElement.style.setProperty('--bg','#f6f6f6');
+    document.documentElement.style.setProperty('--text','#333');
+  }
+}
+</script>
+</head>
+<body>
+<header>
+  <h1>Montblanc | Gmail Promotions‑Annotation Guide 2025</h1>
+  <p>Wir sind die Versender – so erreichst du die Gmail „Top Picks“.</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#warum">Warum Annotationen?</a></li>
+    <li><a href="#block">Blockierungs­gründe</a></li>
+    <li><a href="#implement">Implementierung</a></li>
+    <li><a href="#deliver">Deliverability</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#kpis">KPIs</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="warum">
+<h2>1. Warum Gmail‑Annotationen?</h2>
+<p>Annotations sind Vorschauelemente, die im Gmail‑Promotions‑Tab auf <strong>Android & iOS</strong> erscheinen. Sie präsentieren dein Angebot als <em>visuelle Karte</em> – Bild, Rabatt‑Badge, Ablaufdatum – noch <u>bevor</u> der Empfänger die Mail öffnet. Offizielle Google‑Studien zeigen bis zu <strong>+37 % Klickrate</strong> bei Produkt‑Karussells.</p>
+</section>
+
+<section id="block">
+<h2>2. Häufige Blockierungs­gründe</h2>
+<div class="callout warn">
+<h3>Warum blendet Google deine Annotation aus?</h3>
+<ul>
+  <li><strong>Domain nicht gewhitelistet</strong> (GA‑404) – Bilder/Deals werden verworfen.</li>
+  <li><strong>Aspect‑Ratio‑Fehler</strong> (GA‑205) – Bild nicht 4:5, 1:1 oder 1.91:1.</li>
+  <li><strong>Ungültiges JSON‑LD</strong> (GA‑102) – „@context“ oder Typ falsch.</li>
+  <li><strong>Zu wenige PromotionCards</strong> (&lt;2) – Vorschau‑Tool meldet „must contain at least 2“.</li>
+  <li><strong>Niedrige Reputation</strong> (SPF/DKIM/DMARC‑Fails, Spam‑Beschwerden &gt;0.1 %).</li>
+  <li><strong>Frequenz‑Limits</strong> – Google drosselt Marken, die zu oft senden.</li>
+  <li><strong>KI‑Verdacht auf Dark Patterns</strong> – RETVec erkennt verschleierte Emojis oder übertriebene Luxus‑Superlative.</li>
+</ul>
+</div>
+
+<h3>Schnell‑Selbsttest</h3>
+<table>
+<thead><tr><th>Check</th><th>Ziel‑Wert</th><th>Tool</th></tr></thead>
+<tbody>
+<tr><td>DNS Authentifizierung</td><td>PASS bei SPF, DKIM, DMARC</td><td>Google Postmaster</td></tr>
+<tr><td>Sender‑Score</td><td>&gt;80/100</td><td>Talos / Validity</td></tr>
+<tr><td>Annotation‑Preview fehlerfrei</td><td>Kein GA‑Code</td><td>Gmail Preview‑Tool</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="implement">
+<h2>3. Implementierung – in drei Schritten</h2>
+<ol>
+  <li><strong>Whitelisting</strong> → Mail mit Beispieldateien an <em>p‑Promo‑Outreach@google.com</em>.</li>
+  <li><strong>JSON‑LD</strong> (im &lt;head&gt; deiner HTML‑Mail):</li>
+</ol>
+<pre><code>&lt;script type="application/ld+json"&gt;
+{
+ "@context":"https://schema.org",
+ "@type":"PromotionCard",
+ "image":"https://cdn.montblanc.com/img/meisterstueck.jpg",
+ "headline":"20 % Rabatt – Meisterstück",
+ "url":"https://montblanc.com/meisterstueck",
+ "discountCode":"MB20",
+ "availabilityEnds":"2025-05-31T23:59:59+02:00"
+}
+&lt;/script&gt;</code></pre>
+<ol start="3">
+  <li><strong>Bildregeln</strong>: ein Format, max. 10 Bilder, HTTPS, 1200 px+, kein Text‑Overlay.</li>
+</ol>
+<div class="callout info"><strong>Tipp:</strong> Kombiniere Annotationen mit <abbr title="Brand Indicators for Message Identification">BIMI</abbr> + <abbr title="Verified Mark Certificate">VMC</abbr> – für Favicon‑Badges und Trust‑Boost.</div>
+</section>
+
+<section id="deliver">
+<h2>4. Deliverability &amp; AI‑Signals</h2>
+<p>Seit <em>RETVec v2 (Q4 2024)</em> analysiert Gmail bis zu 700 Features pro Mail. Für Versender zählen vor allem:</p>
+<ul>
+  <li><strong>Engagement Velocity</strong> – Öffnungen + Klicks in den ersten 2 h</li>
+  <li><strong>Spam‑Complaint‑Rate</strong> &lt;0.1 %</li>
+  <li><strong>Link‑Hygiene</strong> – keine 404/301‑Ketten, HTTPS erzwingen</li>
+  <li><strong>Text‑zu‑Bild</strong> &gt;30 % Textanteil</li>
+</ul>
+<p>Niedrige Werte ⇒ Annotationen werden ausgeblendet, selbst bei perfektem Markup.</p>
+</section>
+
+<section id="tools">
+<h2>5. Empfohlene Tools</h2>
+<div class="callout success"><strong>Essentials:</strong> Gmail Preview‑Tool, Google Postmaster, Litmus, GlockApps, RETVec‑Demo.</div>
+<ul>
+  <li><a href="https://developers.google.com/workspace/gmail/promotab/preview" target="_blank">Gmail Preview‑Tool</a></li>
+  <li><a href="https://postmaster.google.com/" target="_blank">Google Postmaster Tools</a></li>
+  <li><a href="https://www.litmus.com" target="_blank">Litmus</a> – Rendering, Dark‑Mode</li>
+  <li><a href="https://glockapps.com" target="_blank">GlockApps</a> – Inbox Placement & Spam Score</li>
+  <li><a href="https://github.com/google-research/revane/tree/main/retvec" target="_blank">RETVec Demo</a></li>
+</ul>
+</section>
+
+<section id="kpis">
+<h2>6. Erfolg messen</h2>
+<table>
+<thead><tr><th>KPI</th><th>Zielwert</th><th>Quelle</th></tr></thead>
+<tbody>
+<tr><td>Inbox Rate</td><td>&ge;98 %</td><td>GlockApps</td></tr>
+<tr><td>Öffnungsrate</td><td>+20 % vs. 2024</td><td>Salesforce MC</td></tr>
+<tr><td>Klickrate</td><td>&gt;6 %</td><td>Salesforce MC</td></tr>
+</tbody>
+</table>
+</section>
+
+</main>
+
+<footer>
+<p>&copy; 2025 Montblanc Marketing Ops · Erstellt mit ❤️ und AI‑Insights.</p>
+<p><a href="https://profiling-company.de/impressum/" target="_blank">Impressum</a> | <a href="https://profiling-company.de/datenschutz/" target="_blank">Datenschutz</a></p>
+</footer>
+
+<div class="toggle-wrapper">
+<label><input type="checkbox" onchange="toggleDarkMode(this)"> Dark Mode umschalten</label>
+</div>
+</body>
+</html>
