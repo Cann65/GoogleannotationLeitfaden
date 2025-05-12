@@ -1,457 +1,200 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maximale Sichtbarkeit für Montblanc E-Mails & Salesforce-Dokumente | Best Practices</title>
-    <style>
-        :root {
-            --primary: #1a1a1a;
-            --secondary: #8b0000;
-            --accent: #d4af37;
-            --light: #f8f8f8;
-            --dark: #333;
-        }
-        
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.8;
-            color: var(--dark);
-            margin: 0;
-            padding: 0;
-            background-color: var(--light);
-        }
-
-        .container {
-            width: 85%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 30px 0;
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--primary), #2a2a2a);
-            color: white;
-            padding: 40px 0;
-            margin-bottom: 40px;
-            border-bottom: 5px solid var(--accent);
-        }
-
-        h1, h2, h3, h4 {
-            font-weight: 600;
-            margin-top: 0;
-        }
-
-        h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            letter-spacing: -0.5px;
-        }
-
-        h2 {
-            font-size: 2.2rem;
-            color: var(--secondary);
-            margin: 50px 0 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--accent);
-        }
-
-        h3 {
-            font-size: 1.6rem;
-            color: var(--primary);
-            margin: 30px 0 15px;
-        }
-
-        h4 {
-            font-size: 1.3rem;
-            color: var(--secondary);
-            margin: 25px 0 10px;
-        }
-
-        p {
-            margin: 0 0 20px;
-        }
-
-        ul, ol {
-            margin: 0 0 25px;
-            padding-left: 25px;
-        }
-
-        li {
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        a {
-            color: var(--secondary);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        a:hover {
-            color: var(--accent);
-            text-decoration: underline;
-        }
-
-        pre {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 20px;
-            border-radius: 5px;
-            overflow-x: auto;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin: 25px 0;
-            border-left: 4px solid var(--accent);
-        }
-
-        code {
-            font-family: 'Courier New', monospace;
-            background: rgba(0,0,0,0.05);
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-size: 0.9em;
-        }
-
-        .highlight-box {
-            background-color: #fff9e6;
-            border-left: 4px solid var(--accent);
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .checklist {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            margin: 30px 0;
-        }
-
-        .checklist li {
-            list-style-type: none;
-            padding-left: 35px;
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        .checklist li:before {
-            content: "☐";
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-            font-size: 1.2em;
-        }
-
-        .note {
-            background-color: #e6f3ff;
-            border-left: 4px solid #4d90fe;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .warning {
-            background-color: #fff3f3;
-            border-left: 4px solid #ff6b6b;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .success {
-            background-color: #edf7ed;
-            border-left: 4px solid #4caf50;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .card {
-            background: white;
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .card h3 {
-            color: var(--secondary);
-            margin-top: 0;
-        }
-
-        footer {
-            background: var(--primary);
-            color: white;
-            padding: 40px 0;
-            margin-top: 60px;
-            text-align: center;
-        }
-
-        .logo {
-            max-width: 200px;
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                width: 90%;
-                padding: 20px 0;
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Montblanc | Gmail Promotions‑Annotation Guide 2025</title>
+<meta name="description" content="Aktuelle Best‑Practices, Fehlersuche & KI‑Insights für Gmail‑Annotations und maximale Zustellbarkeit von Montblanc‑Mailings.">
+<style>
+:root {
+  --brand:#000;        /* Schwarz */
+  --accent:#d4af37;    /* Gold */
+  --primary:#1a1a1a;
+  --secondary:#8b0000; /* Dunkelrot */
+  --bg:#f6f6f6;
+  --text:#333;
+  --info:#e6f3ff;
+  --warn:#fff3f3;
+  --success:#edf7ed;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:#121212;
+    --text:#e0e0e0;
+    --info:#174d8c;
+    --warn:#5c2b2b;
+    --success:#1d4020;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+      line-height:1.7;background:var(--bg);color:var(--text);}
+header{background:linear-gradient(135deg,var(--brand),#222);color:#fff;padding:4rem 1rem;border-bottom:4px solid var(--accent);text-align:center}
+header h1{font-size:2.6rem;letter-spacing:-.5px;margin-bottom:.3rem}
+header p{font-size:1.2rem;opacity:.9}
+nav{background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.05);position:sticky;top:0;z-index:100}
+nav ul{display:flex;flex-wrap:wrap;justify-content:center;list-style:none;padding:.75rem 1rem}
+nav li{margin:.3rem 1rem}
+nav a{text-decoration:none;font-weight:600;color:var(--secondary);transition:.3s}
+nav a:hover{color:var(--accent)}
+main{max-width:1200px;margin:0 auto;padding:2rem 1rem}
+h2{font-size:2rem;color:var(--secondary);margin-top:3rem;border-bottom:2px solid var(--accent);padding-bottom:.4rem}
+h3{font-size:1.4rem;color:var(--primary);margin-top:2rem;}
+p,ul,ol,table{margin-top:1rem}
+ul{padding-left:1.2rem}
+li{margin-bottom:.5rem}
+.callout{padding:1rem 1.2rem;border-left:4px solid var(--accent);border-radius:0 6px 6px 0;background:#fff;margin:1.5rem 0}
+.info{background:var(--info);border-color:#4d90fe}
+.warn{background:var(--warn);border-color:#ff6b6b}
+.success{background:var(--success);border-color:#4caf50}
+pre{background:#1e1e1e;color:#ccc;padding:1rem;border-radius:6px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin:1rem 0}
+th,td{padding:.7rem;border:1px solid #ccc;text-align:left}
+th{background:#fafafa}
+/* Dark‑mode table override */
+@media (prefers-color-scheme: dark) {
+ th{background:#222}
+ td,th{border-color:#555}
+ pre{background:#000}
+ nav{background:#1e1e1e}
+}
+footer{background:var(--brand);color:#fff;text-align:center;padding:3rem 1rem;margin-top:4rem}
+footer a{color:var(--accent);text-decoration:none}
+.toggle-wrapper{position:fixed;bottom:1rem;right:1rem}
+.toggle-wrapper label{cursor:pointer;display:inline-flex;align-items:center;font-size:.9rem}
+.toggle-wrapper input{margin-right:.4rem}
+</style>
+<script>
+/* Simple dark‑mode toggle overriding prefers‑color‑scheme */
+function toggleDarkMode(cb) {
+  if(cb.checked) {
+    document.documentElement.style.setProperty('--bg','#121212');
+    document.documentElement.style.setProperty('--text','#e0e0e0');
+  } else {
+    document.documentElement.style.setProperty('--bg','#f6f6f6');
+    document.documentElement.style.setProperty('--text','#333');
+  }
+}
+</script>
 </head>
-<<body>
-    <header>
-        <div class="container">
-            <h1>Montblanc E-Mail Optimierung 2025</h1>
-            <p style="font-size: 1.2rem; opacity: 0.9;">Lösungen für Google Annotations-Probleme & KI-Filter</p>
-        </div>
-    </header>
+<body>
+<header>
+  <h1>Montblanc | Gmail Promotions‑Annotation Guide 2025</h1>
+  <p>Wir sind die Versender – so erreichst du die Gmail „Top Picks“.</p>
+</header>
 
-    <div class="container">
-        <!-- NEU: Vertiefte KI-Analyse -->
-        <section id="ki-details">
-            <h2>🔍 Wie Googles KI funktioniert (RETVec v2)</h2>
-            
-            <div class="warning">
-                <h3>Echte Reddit-Berichte (Mai 2025)</h3>
-                <ul>
-                    <li>"Trotz Whitelisting werden 40% unserer Annotationen blockiert" (u/EmailMarketer23)</li>
-                    <li>"KI markiert Luxus-Begriffe fälschlich als Spam" (u/LuxuryBrandPro)</li>
-                    <li>"Bilder werden selbst bei 1200px nicht erkannt" (u/ECommerceHelper)</li>
-                </ul>
-            </div>
+<nav>
+  <ul>
+    <li><a href="#warum">Warum Annotationen?</a></li>
+    <li><a href="#block">Blockierungs­gründe</a></li>
+    <li><a href="#implement">Implementierung</a></li>
+    <li><a href="#deliver">Deliverability</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#kpis">KPIs</a></li>
+  </ul>
+</nav>
 
-            <div class="grid">
-                <div class="card">
-                    <h4>KI-Entscheidungsfaktoren</h4>
-                    <ul>
-                        <li>Engagement Velocity (Öffnungen in ersten 2h)</li>
-                        <li>Text/Bild-Verhältnis (>30% Text)</li>
-                        <li>Domain Reputation Score</li>
-                        <li>Historische Spam-Rate der IP</li>
-                    </ul>
-                    <p class="note">Quelle: <a href="https://developers.google.com/gmail/promotab" target="_blank">Google Docs</a></p>
-                </div>
+<main>
 
-                <div class="card">
-                    <h4>Problem-Lösungs-Matrix</h4>
-                    <table style="width:100%">
-                        <tr>
-                            <th>Problem</th>
-                            <th>Lösung</th>
-                            <th>Priorität</th>
-                        </tr>
-                        <tr>
-                            <td>Annotationen erscheinen nicht</td>
-                            <td>BIMI + VMC implementieren</td>
-                            <td>🔴 Hoch</td>
-                        </tr>
-                        <tr>
-                            <td>Falsche Produktbilder</td>
-                            <td>CV-Training mit Google Vision</td>
-                            <td>🟡 Mittel</td>
-                        </tr>
-                        <tr>
-                            <td>Rabatte werden ignoriert</td>
-                            <td>Strikte Schema.org Formatierung</td>
-                            <td>🔴 Hoch</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+<section id="warum">
+<h2>1. Warum Gmail‑Annotationen?</h2>
+<p>Annotations sind Vorschauelemente, die im Gmail‑Promotions‑Tab auf <strong>Android & iOS</strong> erscheinen. Sie präsentieren dein Angebot als <em>visuelle Karte</em> – Bild, Rabatt‑Badge, Ablaufdatum – noch <u>bevor</u> der Empfänger die Mail öffnet. Offizielle Google‑Studien zeigen bis zu <strong>+37 % Klickrate</strong> bei Produkt‑Karussells.</p>
+</section>
 
-            <h3>Schritt-für-Schritt Reparaturanleitung</h3>
-            <div class="checklist">
-                <ul>
-                    <li>Google Postmaster Tools Domain Score >80/100 prüfen</li>
-                    <li>RETVec GitHub Demo mit Testinhalten durchlaufen</li>
-                    <li>Manuelle Whitelist-Anfrage an p-promo-outreach@google.com</li>
-                    <li>A/B-Test mit/ohne AMP-Inhalten durchführen</li>
-                </ul>
-            </div>
-        </section>
+<section id="block">
+<h2>2. Häufige Blockierungs­gründe</h2>
+<div class="callout warn">
+<h3>Warum blendet Google deine Annotation aus?</h3>
+<ul>
+  <li><strong>Domain nicht gewhitelistet</strong> (GA‑404) – Bilder/Deals werden verworfen.</li>
+  <li><strong>Aspect‑Ratio‑Fehler</strong> (GA‑205) – Bild nicht 4:5, 1:1 oder 1.91:1.</li>
+  <li><strong>Ungültiges JSON‑LD</strong> (GA‑102) – „@context“ oder Typ falsch.</li>
+  <li><strong>Zu wenige PromotionCards</strong> (&lt;2) – Vorschau‑Tool meldet „must contain at least 2“.</li>
+  <li><strong>Niedrige Reputation</strong> (SPF/DKIM/DMARC‑Fails, Spam‑Beschwerden &gt;0.1 %).</li>
+  <li><strong>Frequenz‑Limits</strong> – Google drosselt Marken, die zu oft senden.</li>
+  <li><strong>KI‑Verdacht auf Dark Patterns</strong> – RETVec erkennt verschleierte Emojis oder übertriebene Luxus‑Superlative.</li>
+</ul>
+</div>
 
-        <!-- Erweiterte Technische Details -->
-        <section id="technische-annotations">
-            <h2>🛠️ Technische Deep Dive: Annotations-Fehler</h2>
-            
-            <div class="grid">
-                <div class="card">
-                    <h4>Fehler-Codes & Lösungen</h4>
-                    <pre><code>Gmail Annotation Errors 2025:
-- GA-102: Invalid JSON-LD Context
-- GA-205: Image Aspect Ratio Mismatch
-- GA-317: Suspicious Price Fluctuation
-- GA-404: Domain Not Whitelisted</code></pre>
-                    <p class="note">Fehlerbehebungsguide: <a href="#fixes">Abschnitt 4.2</a></p>
-                </div>
+<h3>Schnell‑Selbsttest</h3>
+<table>
+<thead><tr><th>Check</th><th>Ziel‑Wert</th><th>Tool</th></tr></thead>
+<tbody>
+<tr><td>DNS Authentifizierung</td><td>PASS bei SPF, DKIM, DMARC</td><td>Google Postmaster</td></tr>
+<tr><td>Sender‑Score</td><td>&gt;80/100</td><td>Talos / Validity</td></tr>
+<tr><td>Annotation‑Preview fehlerfrei</td><td>Kein GA‑Code</td><td>Gmail Preview‑Tool</td></tr>
+</tbody>
+</table>
+</section>
 
-                <div class="card">
-                    <h4>Salesforce-Spezifische Fixes</h4>
-                    <ul>
-                        <li>Marketing Cloud Connect v5.3+ erforderlich</li>
-                        <li>AMPscript Variablen verschlüsseln</li>
-                        <li>Journey Builder Throttling anpassen</li>
-                    </ul>
-                    <pre><code>SET @Annotations = HTTPHeader("X-Gmail-Annotations", "ENABLED=1")</code></pre>
-                </div>
-            </div>
+<section id="implement">
+<h2>3. Implementierung – in drei Schritten</h2>
+<ol>
+  <li><strong>Whitelisting</strong> → Mail mit Beispieldateien an <em>p‑Promo‑Outreach@google.com</em>.</li>
+  <li><strong>JSON‑LD</strong> (im &lt;head&gt; deiner HTML‑Mail):</li>
+</ol>
+<pre><code>&lt;script type="application/ld+json"&gt;
+{
+ "@context":"https://schema.org",
+ "@type":"PromotionCard",
+ "image":"https://cdn.montblanc.com/img/meisterstueck.jpg",
+ "headline":"20 % Rabatt – Meisterstück",
+ "url":"https://montblanc.com/meisterstueck",
+ "discountCode":"MB20",
+ "availabilityEnds":"2025-05-31T23:59:59+02:00"
+}
+&lt;/script&gt;</code></pre>
+<ol start="3">
+  <li><strong>Bildregeln</strong>: ein Format, max. 10 Bilder, HTTPS, 1200 px+, kein Text‑Overlay.</li>
+</ol>
+<div class="callout info"><strong>Tipp:</strong> Kombiniere Annotationen mit <abbr title="Brand Indicators for Message Identification">BIMI</abbr> + <abbr title="Verified Mark Certificate">VMC</abbr> – für Favicon‑Badges und Trust‑Boost.</div>
+</section>
 
-            <h3>Live-Debugging Beispiel</h3>
-            <div class="highlight-box">
-                <p><strong>Problem:</strong> Rabatt-Badge wird nicht angezeigt</p>
-                <ol>
-                    <li>Bild-URL mit <code>?montblanc=1</code> parameterisieren</li>
-                    <li>Google Vision API Test durchführen</li>
-                    <li>Confidence Score über 0.88 prüfen</li>
-                    <li>Falls <0.88: Bildkomposition anpassen</li>
-                </ol>
-            </div>
-        </section>
+<section id="deliver">
+<h2>4. Deliverability &amp; AI‑Signals</h2>
+<p>Seit <em>RETVec v2 (Q4 2024)</em> analysiert Gmail bis zu 700 Features pro Mail. Für Versender zählen vor allem:</p>
+<ul>
+  <li><strong>Engagement Velocity</strong> – Öffnungen + Klicks in den ersten 2 h</li>
+  <li><strong>Spam‑Complaint‑Rate</strong> &lt;0.1 %</li>
+  <li><strong>Link‑Hygiene</strong> – keine 404/301‑Ketten, HTTPS erzwingen</li>
+  <li><strong>Text‑zu‑Bild</strong> &gt;30 % Textanteil</li>
+</ul>
+<p>Niedrige Werte ⇒ Annotationen werden ausgeblendet, selbst bei perfektem Markup.</p>
+</section>
 
-        <!-- Bestehende Abschnitte aktualisiert -->
-        <section id="email-optimierung">
-            <h2>✉️ E-Mail Optimierung mit KI-Insights</h2>
-            
-            <div class="grid">
-                <div class="card">
-                    <h4>Von Google bestätigte Werte</h4>
-                    <ul>
-                        <li>Mindestbildgröße: 1200x1200px</li>
-                        <li>Max. 1 Emoji im Betreff</li>
-                        <li>Preisangaben mit Währungssymbol</li>
-                    </ul>
-                </div>
+<section id="tools">
+<h2>5. Empfohlene Tools</h2>
+<div class="callout success"><strong>Essentials:</strong> Gmail Preview‑Tool, Google Postmaster, Litmus, GlockApps, RETVec‑Demo.</div>
+<ul>
+  <li><a href="https://developers.google.com/workspace/gmail/promotab/preview" target="_blank">Gmail Preview‑Tool</a></li>
+  <li><a href="https://postmaster.google.com/" target="_blank">Google Postmaster Tools</a></li>
+  <li><a href="https://www.litmus.com" target="_blank">Litmus</a> – Rendering, Dark‑Mode</li>
+  <li><a href="https://glockapps.com" target="_blank">GlockApps</a> – Inbox Placement & Spam Score</li>
+  <li><a href="https://github.com/google-research/revane/tree/main/retvec" target="_blank">RETVec Demo</a></li>
+</ul>
+</section>
 
-                <div class="card">
-                    <h4>Reddit-empfohlene Tools</h4>
-                    <ul>
-                        <li>GlockApps Inbox Placement</li>
-                        <li>Litmus Spam Score Analyzer</li>
-                        <li>RETVec Text Obfuscation Check</li>
-                    </ul>
-                </div>
-            </div>
+<section id="kpis">
+<h2>6. Erfolg messen</h2>
+<table>
+<thead><tr><th>KPI</th><th>Zielwert</th><th>Quelle</th></tr></thead>
+<tbody>
+<tr><td>Inbox Rate</td><td>&ge;98 %</td><td>GlockApps</td></tr>
+<tr><td>Öffnungsrate</td><td>+20 % vs. 2024</td><td>Salesforce MC</td></tr>
+<tr><td>Klickrate</td><td>&gt;6 %</td><td>Salesforce MC</td></tr>
+</tbody>
+</table>
+</section>
 
-            <div class="note">
-                <h4>Experten-Tipp von r/EmailMarketing</h4>
-                <p>"Nutzt Dummy-Links für die ersten 2h nach dem Versand, bis die KI das Engagement trackt:"</p>
-                <pre><code>&lt;a href="https://montblanc.com/engagement-tracker?id=%%=v(@JobID)=%%"&gt;...&lt;/a&gt;</code></pre>
-            </div>
-        </section>
+</main>
 
-        <section id="kpis">
-            <h2>6. Messbare KPIs & Erfolgsmetriken</h2>
-            
-            <div class="grid">
-                <div class="card">
-                    <h3>E-Mail Performance</h3>
-                    <ul>
-                        <li><strong>Inbox Rate:</strong> ≥ 98%</li>
-                        <li><strong>Öffnungsrate:</strong> +15–25%</li>
-                        <li><strong>Klickrate:</strong> > 5%</li>
-                        <li><strong>Spam-Beschwerden:</strong> < 0.1%</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Dokumenten-Sichtbarkeit</h3>
-                    <ul>
-                        <li><strong>Top 3 Rankings:</strong> 80% der Zielkeywords</li>
-                        <li><strong>Organic Traffic:</strong> +30%</li>
-                        <li><strong>CTR in SERPs:</strong> > 5%</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Salesforce Tracking</h3>
-                    <ul>
-                        <li><strong>Interaction Coverage:</strong> 95%</li>
-                        <li><strong>Data Quality Score:</strong> > 90</li>
-                        <li><strong>Segmentierungsgenauigkeit:</strong> 85%</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="success">
-                <h4>Erwartete Ergebnisse</h4>
-                <p>Basierend auf vergleichbaren Implementierungen bei Luxusmarken können Sie erwarten:</p>
-                <ul>
-                    <li>+22% Unique Opens (Richemont Case Study 2024)</li>
-                    <li>+35% Klickrate bei VIP-Segmenten</li>
-                    <li>+40% mehr Suchanfragen nach Produktnamen</li>
-                    <li>15% höhere Konversionsrate bei personalisierten Inhalten</li>
-                </ul>
-            </div>
-        </section>
+<footer>
+<p>&copy; 2025 Montblanc Marketing Ops · Erstellt mit ❤️ und AI‑Insights.</p>
+<p><a href="https://profiling-company.de/impressum/" target="_blank">Impressum</a> | <a href="https://profiling-company.de/datenschutz/" target="_blank">Datenschutz</a></p>
+</footer>
 
-        <section id="tools">
-            <h2>7. Empfohlene Tools & Ressourcen</h2>
-            
-            <h3>Deliverability & Testing</h3>
-            <ul>
-                <li><strong>GlockApps:</strong> Inbox Placement Tests</li>
-                <li><strong>Litmus:</strong> E-Mail Rendering Tests</li>
-                <li><strong>Email on Acid:</strong> Pre-Send Checks</li>
-                <li><strong>Mail-Tester:</strong> Spam-Score Analyse</li>
-            </ul>
-            
-            <h3>SEO & Dokumentenoptimierung</h3>
-            <ul>
-                <li><strong>Google Search Console:</strong> Performance Monitoring</li>
-                <li><strong>Schema.org Validator:</strong> Strukturierte Daten</li>
-                <li><strong>Ahrefs/SEMrush:</strong> Keyword Tracking</li>
-                <li><strong>Adobe Acrobat Pro:</strong> PDF SEO</li>
-            </ul>
-            
-            <h3>Salesforce Integration</h3>
-            <ul>
-                <li><strong>Marketing Cloud:</strong> Omnichannel Campaigns</li>
-                <li><strong>Pardot:</strong> B2B Marketing Automation</li>
-                <li><strong>Tableau CRM:</strong> Advanced Analytics</li>
-                <li><strong>Einstein AI:</strong> Predictive Analytics</li>
-            </ul>
-        </section>
-    </div>
-
-    <footer>
-        <div class="container">
-            <!-- Montblanc Logo -->
-            <img src="https://freesvglogo.com/wp-content/uploads/2022/11/montblanc-logo.svg" alt="Montblanc Logo" class="logo">
-            
-            <p>Dokumentation erstellt für Montblanc | © 2025 Alle Rechte vorbehalten</p>
-            <p>
-                <a href="https://www.profiling-company.de/impressum/" target="_blank">Impressum</a> | 
-                <a href="https://www.profiling-company.de/datenschutz/" target="_blank">Datenschutz</a> | 
-                <a href="https://www.profiling-company.de/kontakt/" target="_blank">Kontakt</a>
-            </p>
-        </div>
-    </footer>
-    
-    
-    
-    
-    
+<div class="toggle-wrapper">
+<label><input type="checkbox" onchange="toggleDarkMode(this)"> Dark Mode umschalten</label>
+</div>
 </body>
 </html>
